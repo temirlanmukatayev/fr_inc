@@ -1,11 +1,62 @@
 {% extends '_base.html' %}
 
+{% block title %}Главная | Freelance Income{% endblock title %}
+
 {% block content %}
+<div class="container col-xxl-8 px-4 py-5 mt-5">
+  <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+    <div class="col-10 col-sm-8 col-lg-6">
+      <img src="https://getbootstrap.com/docs/5.3/examples/heroes/bootstrap-themes.png" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+    </div>
+    <div class="col-lg-6">
+      <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Покупайте фриланс-услуги в один клик</h1>
+      <p class="lead">Выберите услугу. Оплатите. Получите результат</p>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <a href="{% url 'signup' %}" class="btn btn-primary btn-lg px-4 me-md-2">Начать бесплатно</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="container mt-5 mb-5">
-  <div class="row">
+  <div class="row mt-5 mb-5">
     <div class="col">
-      <h1 class="text-center">Welcome to Freelance Income platform.</h1>
-      <p class="text-center">Web platform where Customers can get their job done and Freelancers can earn money.</p>
+      <h1 class="text-center">Выберите рубрику, чтобы начать</h1>
+    </div>
+  </div>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col">
+      <div class="card h-100">
+        <img src="https://cdn-edge.kwork.ru/files/category/collage/categories_first_level/ru/t3_r/design_guest_new.webp" class="card-img-top" alt="...">
+        <div class="card-body">
+          <p class="card-text">Lorum ipsum dolor sit amet. Lorum ipsum dolor sit amet. Lorum ipsum dolor sit amet. </p>
+        </div>
+        <div class="card-footer">
+          <small class="text-body-secondary">230 проверенных исполнителей</small>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card h-100">
+        <img src="https://cdn-edge.kwork.ru/files/category/collage/categories_first_level/ru/t3_r/programming_guest_new.webp" class="card-img-top" alt="...">
+        <div class="card-body">
+          <p class="card-text">Lorum ipsum dolor sit amet. Lorum ipsum dolor sit amet. Lorum ipsum dolor sit amet. </p>
+        </div>
+        <div class="card-footer">
+          <small class="text-body-secondary">390 проверенных исполнителей</small>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card h-100">
+        <img src="https://cdn-edge.kwork.ru/files/category/collage/categories_first_level/ru/t3_r/business_guest_new.webp?ver=1644931166" class="card-img-top" alt="...">
+        <div class="card-body">
+          <p class="card-text">Lorum ipsum dolor sit amet. Lorum ipsum dolor sit amet. Lorum ipsum dolor sit amet. </p>
+        </div>
+        <div class="card-footer">
+          <small class="text-body-secondary">198 проверенных исполнителей</small>
+        </div>
+      </div>
     </div>
   </div>
 </div>
