@@ -9,14 +9,10 @@
   <div class="row justify-content-center">
     <div class="col col-md-4">
       <h1 class="">Зарегестрироваться</h1>
-      <p>Пожалуйста, заполните форму, чтобы зарегестрироваться</p>
-      <form method="post">
-        {% csrf_token %}
-        {{ form | crispy }}
-        <input type="submit" value="Войти" class="btn btn-success w-100">
-      </form>
+      <p>Пожалуйста, выберите выберите роль</p>
       <p class="mt-3">
-        Или Вы можете <a href="{% url 'login' %}" class="text-decoration-none">Войти</a>
+        <a href="{% url 'signup_client' %}" class="btn btn-lg btn-success">Клиент</a>
+        <a href="{% url 'signup_worker' %}" class="btn btn-lg btn-primary">Исполнитель</a>
       </p>
     </div>
   </div>
