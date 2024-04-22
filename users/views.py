@@ -1,5 +1,3 @@
-from django.forms import BaseModelForm
-from django.http import HttpResponse
 from django.views.generic import TemplateView, CreateView
 from django.contrib.auth import get_user_model
 from django.urls import reverse_lazy
@@ -9,6 +7,7 @@ from .decorators import client_required, worker_required
 
 from .forms import ClientCreationForm, WorkerCreationForm
 from .models import Worker
+from orders.models import Order
 
 
 User = get_user_model()
@@ -39,6 +38,11 @@ class SignUpWorkerView(CreateView):
 @method_decorator([login_required, client_required], name='dispatch')
 class ClientCabinetView(TemplateView):
     template_name = 'client_cabinet.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data( **kwargs)
+        context['orders'] = Order.objects.filter(author=self.request.user)
+        return context
 
 
 @method_decorator([login_required, worker_required], name='dispatch')

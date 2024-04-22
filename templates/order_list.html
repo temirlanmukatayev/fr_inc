@@ -1,20 +1,9 @@
 {% extends '_base.html' %}
 
-{% block title %}Кабинет клиента{% endblock title %}
+{% block title %}Список заказов{% endblock title %}
 
 {% block content %}
 <div class="container mt-5 mb-5">
-  <div class="row">
-    <div class="col">
-      <h1>Кабинет клиента</h1>
-      <p>Email: {{ request.user.email }}</p>
-    </div>
-  </div>
-  <div class="row mt-5 mb-3">
-    <div class="col">
-      <h2>Мои заказы</h2>
-    </div>
-  </div>
   <div class="row row-cols-1 row-cols-md-3 g-4">
     {% for order in orders %}
     <div class="col">
@@ -23,7 +12,7 @@
         <div class="card-body">
           <h5 class="card-title">{{ order.title }}</h5>
           <p class="card-text">{{ order.description }}</p>
-          <a href="{% url 'order_update' order.pk %}" class="btn btn-outline-primary">Редактировать</a>
+          <a href="{% url 'order_detail' order.pk %}" class="btn btn-outline-primary">Подробнее</a>
         </div>
         <div class="card-footer">
           <small class="text-body-secondary">{{ order.updated_at }}</small>
@@ -36,5 +25,3 @@
   </div>
 </div>
 {% endblock content %}
-  
-    

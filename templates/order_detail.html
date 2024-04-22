@@ -1,0 +1,19 @@
+{% extends '_base.html' %}
+
+{% block title %}Детали заказа{% endblock title %}
+
+{% block content %}
+<div class="container mt-5 mb-5">
+  <div class="row">
+    <div class="col">
+      <h1>{{ order.title }}</h1>
+      <p>{{ order.description }}</p>
+      <p>Статус: {{ order.get_status_display }}</p>
+      <p>Создан: {{ order.created_at }}</p>
+      <p>Обновлен: {{ order.created_at }}</p>
+      <p>Автор: {{ order.author }}</p>
+      <p><a href="#" class="btn btn-outline-primary">Выполнить заказ</a></p>
+    </div>
+  </div>
+</div>
+{% endblock content %}

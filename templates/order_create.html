@@ -1,0 +1,20 @@
+{% extends '_base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Создать заказ{% endblock title %}
+
+{% block content %}
+<div class="container mt-5 mb-5">
+  <div class="row justify-content-center">
+    <div class="col col-md-4">
+      <h1 class="">Создать заказ</h1>
+      <form method="post">
+        {% csrf_token %}
+        {{ form | crispy }}
+        <input type="submit" value="Создать" class="btn btn-success w-100">
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}

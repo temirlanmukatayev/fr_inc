@@ -1,8 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 
-from users.models import Worker
-
 
 User = get_user_model()
 
@@ -22,21 +20,19 @@ class Order(models.Model):
     status = models.CharField(max_length=1, choices=OrderStatus,
                               default=OrderStatus.NEW, verbose_name='Статус')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Создан')
-    updated_at = models.DateTimeField(auto_now=True, auto_now_add=True,
-                                      verbose_name='Обновлен')
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='Обновлен')
 
     def __str__(self) -> str:
         return f'Заказ {self.pk}'
 
 
-class WorkerOrder(models.Manager):
-    worker = models.ForeignKey(Worker, on_delete=models.CASCADE)
+class WorkerOrder(models.Model):
+    worker = models.ForeignKey(User, on_delete=models.CASCADE)
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     status = models.CharField(max_length=1, choices=OrderStatus,
                               default=OrderStatus.NEW, verbose_name='Статус')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Создан')
-    updated_at = models.DateTimeField(auto_now=True, auto_now_add=True,
-                                      verbose_name='Обновлен')
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='Обновлен')
 
     def __str__(self):
         return f'Запрос {self.pk}'
