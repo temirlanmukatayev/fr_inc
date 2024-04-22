@@ -32,7 +32,12 @@
                 {{ user.email }}
               </a>
               <ul class="dropdown-menu  dropdown-menu-end">
-                <li><a class="dropdown-item" href="#">Личный кабинет</a></li>
+                {% if user.is_client %}
+                <li><a class="dropdown-item" href="{% url 'client_cabinet' %}">Личный кабинет клиента</a></li>
+                {% endif %}
+                {% if user.is_worker %}
+                <li><a class="dropdown-item" href="{% url 'worker_cabinet' %}">Личный кабинет исполнителя</a></li>
+                {% endif %}
                 <li>
                   <a href="#" class="dropdown-item" onclick="document.getElementById('logoutForm').submit();">Выйти</a>
                   <form id="logoutForm" action="{% url 'logout' %}" method="post">{% csrf_token %}</form>
