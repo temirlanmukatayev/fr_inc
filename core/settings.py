@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 
     # my
     'users.apps.UsersConfig',
+    'orders.apps.OrdersConfig',
 ]
 
 MIDDLEWARE = [
