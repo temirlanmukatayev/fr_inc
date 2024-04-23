@@ -4,13 +4,18 @@ from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
 
 from users.decorators import client_required, worker_required
-from .models import Order
+from .models import Order, OrderStatus, WorkerOrder
 
 
 class OrderListView(ListView):
     model = Order
     context_object_name = 'orders'
     template_name = 'order_list.html'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = Order.objects.filter(status=OrderStatus.NEW)
+        return queryset
 
 
 @method_decorator([client_required,], name='dispatch')

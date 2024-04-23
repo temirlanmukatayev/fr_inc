@@ -7,7 +7,7 @@ from .decorators import client_required, worker_required
 
 from .forms import ClientCreationForm, WorkerCreationForm
 from .models import Worker
-from orders.models import Order
+from orders.models import Order, WorkerOrder
 
 
 User = get_user_model()
@@ -48,3 +48,9 @@ class ClientCabinetView(TemplateView):
 @method_decorator([login_required, worker_required], name='dispatch')
 class WorkerCabinetView(TemplateView):
     template_name = 'worker_cabinet.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['workerorders'] = WorkerOrder.objects.filter(worker=self.request.user)
+        return context
+    

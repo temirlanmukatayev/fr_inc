@@ -9,5 +9,29 @@
       <h1>Кабинет исполнителя</h1>
     </div>
   </div>
+  <div class="row mt-5 mb-3">
+    <div class="col">
+      <h2>Мои заявки</h2>
+    </div>
+  </div>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for workerorder in workerorders %}
+    <div class="col">
+      <div class="card h-100">
+        <img src="https://cdn-edge.kwork.ru/files/category/collage/categories_first_level/ru/t3_r/design_guest_new.webp" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{ workerorder.order }}</h5>
+          <p class="card-text">{{ workerorder.status }}</p>
+          <a href="#" class="btn btn-outline-primary">Редактировать</a>
+        </div>
+        <div class="card-footer">
+          <small class="text-body-secondary">{{ workerorder.updated_at }}</small>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <p>На данный момент нет новых заявок.</p>
+    {% endfor %}
+  </div>
 </div>
 {% endblock content %}
