@@ -5,9 +5,11 @@ from django.urls import reverse_lazy
 
 from users.decorators import client_required, worker_required
 from .models import Order, OrderStatus, WorkerOrder
+from .mixins import AuthorOnlyMixin
 
 
 class OrderListView(ListView):
+    '''Listing all client orders for public access.'''
     model = Order
     context_object_name = 'orders'
     template_name = 'order_list.html'
@@ -20,6 +22,7 @@ class OrderListView(ListView):
 
 @method_decorator([client_required,], name='dispatch')
 class OrderCreateView(CreateView):
+    '''Creating a new order by client.'''
     model = Order
     fields = ['title', 'description',]
     template_name = 'order_create.html'
@@ -31,7 +34,8 @@ class OrderCreateView(CreateView):
     
 
 @method_decorator([client_required,], name='dispatch')
-class OrderUpdateView(UpdateView):
+class OrderUpdateView(AuthorOnlyMixin, UpdateView):
+    '''Updating order details by client (only author).'''
     model = Order
     fields = ['title', 'description', 'status',]
     template_name = 'order_update.html'
@@ -39,6 +43,7 @@ class OrderUpdateView(UpdateView):
     
 
 class OrderDetailView(DetailView):
+    '''Order details for public access.'''
     model = Order
     context_object_name = 'order'
     template_name = 'order_detail.html'
